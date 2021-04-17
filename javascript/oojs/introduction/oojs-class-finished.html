@@ -12,21 +12,36 @@
 
     <script>
       function Person(first, last, age, gender, interests) {
-        this.name = {
-          'first': first,
-          'last' : last
-        };
-        this.age = age;
-        this.gender = gender;
-        this.interests = interests;
-        this.bio = function() {
-          alert(this.name.first + ' ' + this.name.last + ' is ' + this.age + ' years old. He likes ' + this.interests[0] + ' and ' + this.interests[1] + '.');
-        };
-        this.greeting = function() {
-          alert('Hi! I\'m ' + this.name.first + '.');
-        };
-      };
+    this.name = {
+        first: first,
+        last: last
+    };
+    this.age = age;
+    this.gender = gender.toLowerCase();
+    this.interests = interests;
 
-      let person1 = new Person('Bob', 'Smith', 32, 'male', ['music', 'skiing']);
+    this.bio = function () {
+        let sarr = this.interests
+
+        let take = sarr[sarr.length - 1]
+        sarr.splice(sarr.length - 1)
+        sarr.push('and', take)
+
+        if (this.gender === 'male') {
+            alert(this.name.first + ' ' + this.name.last + ' is ' + this.age + ' years old. He likes ' + sarr + '.');
+        } else if (this.gender === 'female') {
+            alert(this.name.first + ' ' + this.name.last + ' is ' + this.age + ' years old. She likes ' + sarr + '.');
+        }
+    };
+    this.greeting = function () {
+        alert('Hi! I\'m ' + this.name.first + '.');
+    };
+}
+
+let p1female = new Person('Sarah', 'Joy', 32, 'female', ['music', 'skiing', 'swimming', 'dancing', 'driving', 'singing']);
+p1female.bio();
+
+let p1male = new Person('James', 'Smith', 32, 'male', ['music', 'skiing', 'hiking']);
+p1male.bio();
     </script>
 </html>
